@@ -1,0 +1,21 @@
+  services:
+    sveltekit-app: 
+      image: registry.codlec.com/appkit:latest
+      container_name: appkit-codlec
+      ports:
+        - "127.0.0.1:3000:3000" # Mapea el puerto 3000 del contenedor al puerto 3000 de tu máquina host
+      restart: always # Reinicia el contenedor si se detiene (a menos que se detenga manualmente)    
+      environment:    
+        PG_CONNECTION_STR: ${PG_CONNECTION_STR} # Tomará el valor de .env
+        GEMINI_API_KEY: ${GEMINI_API_KEY}       # Tomará el valor de .env
+        GEMINI_MODEL: ${GEMINI_MODEL}           # Tomará el valor de .env
+        SECRET_SESSION_HASH: ${SECRET_SESSION_HASH} # Tomará el valor de .env
+        SESSION_COOKIE_TOKEN_NAME: ${SESSION_COOKIE_TOKEN_NAME} # Tomará el valor de .env
+        NODE_ENV: ${NODE_ENV:-development} # Tomará el valor de .env o usará 'development' como default
+      networks:
+        - backend
+
+  networks:
+    backend:
+      external: true
+
