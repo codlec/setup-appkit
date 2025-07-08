@@ -1,6 +1,6 @@
   services:
     sveltekit-app: 
-      image: registry.codlec.com/appkit:latest
+      image: registry.codlec.com/appkit
       container_name: appkit-codlec
       ports:
         - "127.0.0.1:3000:3000" # Mapea el puerto 3000 del contenedor al puerto 3000 de tu máquina host
@@ -12,6 +12,7 @@
         SECRET_SESSION_HASH: ${SECRET_SESSION_HASH} # Tomará el valor de .env
         SESSION_COOKIE_TOKEN_NAME: ${SESSION_COOKIE_TOKEN_NAME} # Tomará el valor de .env
         NODE_ENV: ${NODE_ENV:-development} # Tomará el valor de .env o usará 'development' como default
+        ORIGIN: http://127.0.0.1:3000
       networks:
         - backend
 
