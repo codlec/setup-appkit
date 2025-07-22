@@ -29,6 +29,9 @@ services:
   
     ports:
       - "127.0.0.1:8080:80" # Accessible solo desde el host
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     networks:
