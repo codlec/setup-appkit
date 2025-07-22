@@ -4,17 +4,16 @@ services:
     container_name: seq-server
     restart: unless-stopped
     environment:
-      ACCEPT_EULA: "Y"
-      SEQ_FIRSTRUN_ADMINPASSWORD: ${FIRST_ADMIN_PASS}
+      ACCEPT_EULA: "Y"      
+      SEQ_FIRSTRUN_ADMINPASSWORD: "TuPasswordFuerte123"
     volumes:
       - /seq-data:/data
-    ports:      
-      - "5341:5341"
-      - "9090:80"
+    ports:
+      - "5341:5341"  # Puerto para ingesta de logs
+      - "9090:80"    # Interfaz web accesible en localhost:9090
     networks:
       - backend
 
 networks:
   backend:
     driver: bridge
-
