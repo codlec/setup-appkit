@@ -14,6 +14,7 @@ services:
       SECRET_SESSION_HASH: ${SECRET_SESSION_HASH}
       SESSION_COOKIE_TOKEN_NAME: ${SESSION_COOKIE_TOKEN_NAME}
       NODE_ENV: ${NODE_ENV:-development}
+      SEQ_SERVER_URL: ${SEQ_SERVER_URL}
       ORIGIN: ${ORIGIN:-http://127.0.0.1:3000}
     networks:
       - backend 
