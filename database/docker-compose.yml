@@ -6,11 +6,12 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      # POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "5432:5432"  # 🔐 Solo accesible desde localhost
+      - "5432:5432"  
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - postgres_backups:/backups
     networks:
       - backend
     healthcheck:
@@ -25,9 +26,7 @@ services:
     image: dpage/pgadmin4:9
     container_name: pgadmin
     restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+  
     ports:
       - "127.0.0.1:8080:80" # Accessible solo desde el host
     volumes:
@@ -42,6 +41,12 @@ services:
 volumes:
   postgres_data:
   pgadmin_data:
+  postgres_backups:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backups
+      o: bind
 
 networks:
   backend:

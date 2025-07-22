@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  seq-server:
+    image: datalust/seq:latest
+    container_name: seq-server
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      SEQ_FIRSTRUN_ADMINPASSWORD: ${FIRST_ADMIN_PASS}"
+    volumes:
+      - /seq-data:/data
+    ports:      
+      - "5341:5341"
+      - "9090:80"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
