@@ -16,6 +16,7 @@ services:
 
 volumes:
   seq-data:
+  
 networks:
   backend:
     driver: bridge
