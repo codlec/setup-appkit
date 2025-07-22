@@ -7,7 +7,7 @@ services:
       ACCEPT_EULA: "Y"      
       SEQ_FIRSTRUN_ADMINPASSWORD: "TuPasswordFuerte123"
     volumes:
-      - /seq-data:/data
+      - seq-data:/data
     ports:
       - "5341:5341"  # Puerto para ingesta de logs
       - "9090:80"    # Interfaz web accesible en localhost:9090
